@@ -1,0 +1,115 @@
+openapi: 3.0.3
+info:
+  title: Calculator
+  version: 1.0.11
+servers:
+- url: https://localhost:8080
+tags:
+- name: math
+  description: Calculate an expression
+paths:
+  /math/add:
+    put:
+      tags:
+      - math
+      summary: add number1 to number2
+      operationId: addNumber
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/operation'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/operation'
+        "400":
+          description: Error
+  /math/sub:
+    put:
+      tags:
+      - math
+      summary: sub number2 from number1
+      operationId: subNumber
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/operation'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/operation'
+        "400":
+          description: Error
+  /math/multi:
+    put:
+      tags:
+      - math
+      summary: number1 * number2
+      operationId: multi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/operation'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/operation'
+        "400":
+          description: Error
+  /math/div:
+    put:
+      tags:
+      - math
+      summary: number1/number2
+      operationId: divNumber
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/operation'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/operation'
+        "400":
+          description: Error
+        "404":
+          description: Divide by zero
+components:
+  schemas:
+    operation:
+      required:
+      - number1
+      - number2
+      type: object
+      properties:
+        number1:
+          type: integer
+          format: int64
+          example: 2
+        number2:
+          type: integer
+          format: int64
+          example: 2
+      example:
+        number1: 2
+        number2: 2
